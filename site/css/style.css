@@ -10,17 +10,60 @@
 
 body {
   font-family: 'Nunito', sans-serif;
-  background: #fefbf6;
+  background: linear-gradient(135deg, #0a1628, #1a3a6e, #0d2247);
   color: #2d2d2d;
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  padding: 2.25rem;
+}
+
+/* ---- Background stars ---- */
+
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.8; }
+}
+
+/* ---- Frame ---- */
+
+.frame {
+  position: relative;
+  z-index: 1;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 3px;
+  box-shadow: 0 8px 60px rgba(0, 0, 0, 0.4);
+  min-height: calc(100vh - 4.5rem);
+}
+
+.frame-inner {
+  background: #fefbf6;
+  border-radius: 21px;
+  position: relative;
+  overflow: hidden;
+  min-height: calc(100vh - 4.5rem - 6px);
 }
 
 /* ---- Animated background blobs ---- */
 
 .bg-blobs {
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
@@ -72,7 +115,7 @@ body {
 /* ---- Floating confetti ---- */
 
 .confetti {
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 0;
@@ -335,6 +378,9 @@ footer p {
 /* ---- Responsive ---- */
 
 @media (max-width: 600px) {
+  body { padding: 1rem; }
+  .frame { border-radius: 18px; padding: 3px; min-height: calc(100vh - 2rem); }
+  .frame-inner { border-radius: 15px; min-height: calc(100vh - 2rem - 6px); }
   h1 { font-size: 1.3rem; }
   h2 { font-size: 2.2rem; }
   .flask-icon svg { width: 60px; height: 60px; }
