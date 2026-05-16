@@ -1,0 +1,343 @@
+/* ============================================
+   Helena & Teodor's Game Lab — Kid Mode CSS
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #fefbf6;
+  color: #2d2d2d;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ---- Animated background blobs ---- */
+
+.bg-blobs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+  animation: blobFloat 12s ease-in-out infinite;
+}
+
+.blob-1 {
+  width: 400px; height: 400px;
+  background: #ff6b6b;
+  top: -100px; left: -80px;
+  animation-delay: 0s;
+}
+
+.blob-2 {
+  width: 350px; height: 350px;
+  background: #ffd93d;
+  top: 30%; right: -60px;
+  animation-delay: -3s;
+}
+
+.blob-3 {
+  width: 300px; height: 300px;
+  background: #6bcb77;
+  bottom: 10%; left: 20%;
+  animation-delay: -6s;
+}
+
+.blob-4 {
+  width: 280px; height: 280px;
+  background: #4d96ff;
+  bottom: -50px; right: 15%;
+  animation-delay: -9s;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.05); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+/* ---- Floating confetti ---- */
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  top: -30px;
+  opacity: 0;
+  animation: confettiFall linear infinite;
+}
+
+@keyframes confettiFall {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px) rotate(0deg);
+  }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.7; }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg);
+  }
+}
+
+/* ---- Header ---- */
+
+header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2.5rem 1.5rem 1rem;
+}
+
+.title-block {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flask-icon {
+  animation: flaskWobble 3s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+@keyframes flaskWobble {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+}
+
+.flask-icon .bubble {
+  animation: bubbleRise 2s ease-in-out infinite;
+}
+
+.flask-icon .b1 { animation-delay: 0s; }
+.flask-icon .b2 { animation-delay: 0.6s; }
+.flask-icon .b3 { animation-delay: 1.2s; }
+
+@keyframes bubbleRise {
+  0%, 100% { transform: translateY(0); opacity: 0.8; }
+  50% { transform: translateY(-8px); opacity: 1; }
+}
+
+h1 {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  color: #5c4d9a;
+  text-align: left;
+}
+
+h2 {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 3.2rem;
+  line-height: 1;
+  text-align: left;
+  background: linear-gradient(135deg, #ff6b6b, #ffd93d, #6bcb77, #4d96ff, #ff6bd6);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbowShift 4s ease-in-out infinite;
+}
+
+@keyframes rainbowShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.tagline {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #7a6fb5;
+  margin-top: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Games grid ---- */
+
+main {
+  position: relative;
+  z-index: 1;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ---- Game card ---- */
+
+.game-card {
+  background: var(--card-bg, #fff3e0);
+  border: 3px solid var(--card-border, #ff9800);
+  border-radius: 20px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: #2d2d2d;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  cursor: pointer;
+}
+
+.game-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.8) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.card-number {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--card-badge, #e65100);
+  opacity: 0.5;
+}
+
+.card-emoji {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.game-card h3 {
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--card-badge, #e65100);
+  line-height: 1.2;
+}
+
+.game-card p {
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.card-author {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  background: var(--card-border, #ff9800);
+  color: #fff;
+  font-family: 'Baloo 2', cursive;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  align-self: flex-start;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.game-card:hover .play-btn {
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.play-arrow {
+  font-size: 0.8rem;
+  transition: transform 0.15s ease;
+}
+
+.game-card:hover .play-arrow {
+  transform: translateX(3px);
+}
+
+/* ---- Loading / empty ---- */
+
+.loading,
+.no-games {
+  text-align: center;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.3rem;
+  color: #7a6fb5;
+  padding: 3rem 0;
+}
+
+/* ---- Footer ---- */
+
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+}
+
+.footer-characters {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.char {
+  display: inline-block;
+  animation: charBounce 2s ease-in-out infinite;
+}
+
+.char-1 { animation-delay: 0s; }
+.char-2 { animation-delay: 0.3s; }
+
+@keyframes charBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+footer p {
+  font-family: 'Baloo 2', cursive;
+  font-size: 1rem;
+  color: #999;
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 600px) {
+  h1 { font-size: 1.3rem; }
+  h2 { font-size: 2.2rem; }
+  .flask-icon svg { width: 60px; height: 60px; }
+  .games-grid { grid-template-columns: 1fr; }
+  .blob { opacity: 0.2; }
+}

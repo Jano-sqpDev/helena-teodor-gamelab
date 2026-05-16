@@ -1,0 +1,16 @@
+[
+  {
+    "folder": "game-01-hangman",
+    "title": "Hangman",
+    "description": "Guess the word before the stick figure is complete!",
+    "emoji": "🔤",
+    "author": "Dad (as a starter)"
+  },
+  {
+    "folder": "game-02-banano",
+    "title": "Banano",
+    "description": "Collect bananas to feed your Gorillas family",
+    "emoji": "🍌",
+    "author": "Teodor"
+  }
+]
